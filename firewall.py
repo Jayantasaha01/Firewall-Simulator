@@ -2,18 +2,20 @@
 import json, sys
 
 RULES = [
-    # Block traffic from this IP range
-    {"action": "DROP", "src":"10.0/24.0/24.0/24"},
-    # Allow traffic from this IP range
-    {"action": "ALLOW", "src": "203.0.113.0/24"}
+    {"action": "DROP", "range": ["203.0.113.0", "203.0.113.255"]},
+    {"action": "ALLOW", "range": ["10.0.0.0", "10.255.255.255"]}
 ]
 
 def check_ip(ip):
+    import ipaddress
+    ip_obj = ipaddress.ip_address(ip)
+
     for r in RULES:
-        if r["src"].endswith("/24") and ip.startswith(r["src"][:-4]):
+        start = ipaddress.ip_address(r["range"][0])
+        end = ipaddress.ip_address(r["range"][1])
+        if start <= ip_obj <= end:
             return r["action"]
-        if r["src"].endswith("/8") and ip.startswith(r["src"][:-2]):
-            return r["action"]
+
     return "ALLOW"
 
 def simulate(packets_file):
