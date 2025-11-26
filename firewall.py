@@ -2,10 +2,12 @@
 import json, sys
 
 RULES = [
+    #Reject traffic from the following range of IP Addresses
     {"action": "DROP", "range": ["203.0.113.0", "203.0.113.255"]},
+    #Allow traffic from the following range of IP Addresses
     {"action": "ALLOW", "range": ["10.0.0.0", "10.255.255.255"]}
 ]
-
+#Function to check if an IP address matches any rule
 def check_ip(ip):
     import ipaddress
     ip_obj = ipaddress.ip_address(ip)
@@ -17,7 +19,7 @@ def check_ip(ip):
             return r["action"]
 
     return "ALLOW"
-
+#Function to simulate firewall processing packets from the file
 def simulate(packets_file):
     with open(packets_file) as f:
         for line in f:
