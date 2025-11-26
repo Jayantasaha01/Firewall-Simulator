@@ -2,7 +2,9 @@
 import json, sys
 
 RULES = [
+    #Rejects IP Adresses from the following ranges
     {"action": "DROP", "src": "203.0.113.0/24"},
+    #Allows IP Adresses from the following ranges
     {"action": "ALLOW", "src": "10.0.0.0/12"}
 ]
 
