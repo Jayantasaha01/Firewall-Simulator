@@ -3,7 +3,7 @@ import json, sys
 
 RULES = [
     {"action": "DROP", "src": "203.0.113.0/24"},
-    {"action": "ALLOW", "src": "10.0.0.0/8"}
+    {"action": "ALLOW", "src": "10.0.0.0/12"}
 ]
 
 def check_ip(ip):
@@ -22,7 +22,5 @@ def simulate(packets_file):
             print(f"{p.get('src_ip')} -> {action}")
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python3 firewall.py packets.json")
-        sys.exit(1)
-    simulate(sys.argv[1])
+    packets_file = sys.argv[1] if len(sys.argv) > 1 else "packets.json"
+    simulate(packets_file)

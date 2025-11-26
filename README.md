@@ -1,6 +1,6 @@
 # Firewall Simulator
 
-A minimal firewall simulation tool that reads packet logs and applies simple IP-based rules.
+A simple firewall simulation tool that reads packet logs from the packets.json file and applies simple IP-based rules.
 
 ## Usage
 
@@ -8,4 +8,4 @@ A minimal firewall simulation tool that reads packet logs and applies simple IP-
 2. Run the simulator:
 
 ```bash
-python3 firewall.py packets.json
+python3 firewall.py
