@@ -3,9 +3,9 @@ import json, sys
 
 RULES = [
     # Block traffic from this IP range
-    {"action": "DROP", "src": "203.0.113.0/24"},
+    {"action": "DROP", "src":"10.0.0.0/8"},
     # Allow traffic from this IP range
-    {"action": "ALLOW", "src": "10.0.0.0/8"}
+    {"action": "ALLOW", "src": "203.0.113.0/24"}
 ]
 
 def check_ip(ip):
